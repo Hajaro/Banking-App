@@ -1,0 +1,17 @@
+CREATE TABLE users (
+    socialSecNum varchar(255) PRIMARY KEY,
+    username varchar(255) NOT NULL,
+    password varchar(255) NOT NULL,
+    firstName varchar(255) NOT NULL,
+    lastName varchar(255) NOT NULL,
+    age int NOT NULL,
+    role varchar(255) NOT NULL
+);
+
+CREATE TABLE account (
+	number varchar(255) PRIMARY KEY,
+    person varchar(255) NOT NULL,
+    currency varchar(10) NOT NULL,
+    amount varchar(255) NOT NULL,
+    FOREIGN KEY (person) REFERENCES users(socialSecNum)
+);
