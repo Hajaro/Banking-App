@@ -10,7 +10,7 @@ public class MenuCustomer {
         System.out.println("Menu");
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            MoneyManagement money_management = new MoneyManagement(social_security_number);
+            CustomerManager money_management = new CustomerManager(social_security_number);
             System.out.println("1. Make a deposit");
             System.out.println("2. Make a withdrawal");
             System.out.println("3. Take out a loan");

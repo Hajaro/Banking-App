@@ -3,9 +3,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class MoneyManagement {
+public class CustomerManager {
     private final String social_security_number;
-    public MoneyManagement(String social_security_number) {
+    public CustomerManager(String social_security_number) {
         this.social_security_number = social_security_number;
     }
     Scanner scanner = new Scanner(System.in);

@@ -10,25 +10,29 @@ public class MenuAdmin {
         System.out.println("Menu");
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            MoneyManagement money_management = new MoneyManagement(social_security_number);
-            System.out.println("1. Make a deposit");
-            System.out.println("2. Make a withdrawal");
-            System.out.println("3. Take out a loan");
-            System.out.println("4. Exit");
+            AdminManager adminManager = new AdminManager(social_security_number);
+            System.out.println("1. Add user");
+            System.out.println("2. Remove user");
+            System.out.println("3. Modify user");
+            System.out.println("4. Modify account");
+            System.out.println("5. Exit");
             System.out.println("Enter your choice: ");
             int choice = Integer.parseInt(scanner.nextLine());
-            if (choice == 4) {
+            if (choice == 5) {
                 break;
             }
             switch (choice) {
                 case 1:
-                    money_management.deposit();
+                    adminManager.addUser();
                     break;
                 case 2:
-                    money_management.withdraw();
+                    adminManager.removeUser();
                     break;
                 case 3:
-                    money_management.takeLoan();
+                    adminManager.modifyUser();
+                    break;
+                case 4:
+                    adminManager.modifyAccount();
                     break;
                 default:
                     System.out.println("Invalid choice");
