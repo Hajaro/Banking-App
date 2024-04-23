@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Login {
 
-    public static void main(String[] args) throws SQLException {
+    public static String[] login() throws SQLException {
         Connection connection = SQL_Connection.ConnectToDB();
         Statement statement = connection.createStatement();
 
@@ -15,12 +15,26 @@ public class Login {
         String username = scanner.nextLine();
         System.out.println("Enter your password: ");
         String password = scanner.nextLine();
-        String query = String.format("SELECT username, password FROM users WHERE username = '%s' AND password = '%s'", username, password);
+        String query = String.format("SELECT username, password, socialSecNum, role FROM users WHERE username = '%s' AND password = '%s'", username, password);
         ResultSet resultSet = statement.executeQuery(query);
         if (resultSet.next()) {
             System.out.println("Login successful");
-        } else {
-            System.out.println("Login failed");
+            String social_security_number = resultSet.getString("socialSecNum");
+            String role = resultSet.getString("role");
+            switch (role) {
+                case "customer" -> {
+                    return new String[]{social_security_number, "customer"};
+                }
+                case "employee" -> {
+                    return new String[]{social_security_number, "employee"};
+                }
+                case "admin" -> {
+                    return new String[]{social_security_number, "admin"};
+                }
+            }
         }
+        return new String[]{"Invalid login credentials", "invalid"};
     }
+
 }
+

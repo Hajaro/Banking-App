@@ -2,6 +2,28 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        Login.main(args);
+        String[] customer = Login.login();
+        String social_security_number = customer[0];
+        String role = customer[1];
+        if (social_security_number.equals("Invalid login credentials")) {
+            System.out.println("Invalid login credentials");
+            return;
+        }
+        switch (role) {
+            case "customer" -> {
+                MenuCustomer menu = new MenuCustomer(social_security_number);
+                menu.showMenu(social_security_number);
+            }
+            case "employee" -> {
+                MenuEmployee menu = new MenuEmployee(social_security_number);
+                menu.showMenu(social_security_number);
+            }
+            case "admin" -> {
+                MenuAdmin menu = new MenuAdmin(social_security_number);
+                menu.showMenu(social_security_number);
+            }
+            default -> System.out.println("Invalid role");
+        }
+
     }
 }
