@@ -15,7 +15,7 @@ public class Login {
         String username = scanner.nextLine();
         System.out.println("Enter your password: ");
         String password = scanner.nextLine();
-        String query = String.format("SELECT username, password, socialSecNum, role FROM users WHERE username = '%s' AND password = '%s'", username, password);
+        String query = String.format("SELECT username, password, socialSecNum, role FROM users WHERE username = '%s' AND password = MD5('%s')", username, password);
         ResultSet resultSet = statement.executeQuery(query);
         if (resultSet.next()) {
             System.out.println("Login successful");

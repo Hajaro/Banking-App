@@ -29,9 +29,10 @@ public class AdminManager {
         String last_name = scanner.nextLine();
         System.out.println("Enter the age of the person you want to add: ");
         Integer age = scanner.nextInt();
+        scanner.nextLine();
         System.out.println("Enter the role of the person you want to add: ");
         String role = scanner.nextLine();
-        String query = String.format("INSERT INTO users VALUES ('%s', '%s', '%s', '%s', '%s', %d, '%s')", social_security_number_customer, username, password, name, last_name, age, role);
+        String query = String.format("INSERT INTO users VALUES ('%s', '%s', MD5('%s'), '%s', '%s', %d, '%s')", social_security_number_customer, username, password, name, last_name, age, role);
         makeQuery(query);
         System.out.println("You have added " + name + " with social security number " + social_security_number_customer);
     }
@@ -57,9 +58,10 @@ public class AdminManager {
         String last_name = scanner.nextLine();
         System.out.println("Enter the new age of the person you want to modify: ");
         Integer age = scanner.nextInt();
+        scanner.nextLine();
         System.out.println("Enter the new role of the person you want to modify: ");
         String role = scanner.nextLine();
-        String query = String.format("UPDATE users SET username = '%s', password = '%s', name = '%s', lastName = '%s', age = %d, role = '%s' WHERE socialSecNum = '%s'", username, password, name, last_name, age, role, social_security_number_customer);
+        String query = String.format("UPDATE users SET username = '%s', password = MD5('%s'), firstName = '%s', lastName = '%s', age = %d, role = '%s' WHERE socialSecNum = '%s'", username, password, name, last_name, age, role, social_security_number_customer);
         makeQuery(query);
         System.out.println("You have modified the user with social security number " + social_security_number_customer);
     }

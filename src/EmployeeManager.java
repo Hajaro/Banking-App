@@ -34,7 +34,7 @@ public class EmployeeManager {
         String last_name = scanner.nextLine();
         System.out.println("Enter the age of the person you want to add: ");
         Integer age = scanner.nextInt();
-        String query = String.format("INSERT INTO users VALUES ('%s', '%s', '%s', '%s', '%s', %d, 'customer')", social_security_number_customer, username, password, name, last_name, age);
+        String query = String.format("INSERT INTO users VALUES ('%s', '%s', MD5('%s'), '%s', '%s', %d, 'customer')", social_security_number_customer, username, password, name, last_name, age);
         makeQuery(query);
         System.out.println("You have added " + name + " with social security number " + social_security_number_customer);
     }

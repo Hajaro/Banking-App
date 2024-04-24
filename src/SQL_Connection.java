@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class SQL_Connection {
     public static Connection ConnectToDB() {
-        String url = "jdbc:mysql://localhost:3306/banking_system";
+        String url = "jdbc:mysql://localhost:3306/banking_system?useSSL=false&serverTimezone=UTC";
         String username = "root";
         String password = "";
         try {
