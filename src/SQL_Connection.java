@@ -1,6 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class SQL_Connection {
     public static Connection ConnectToDB() {
@@ -14,5 +12,18 @@ public class SQL_Connection {
         } catch (SQLException e) {
             throw new IllegalStateException("Cannot connect the database!", e);
         }
+    }
+
+    public void makeQuery(String query) throws SQLException {
+        Connection connection = ConnectToDB();
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(query);
+    }
+
+    public ResultSet makeQuerySelect(String query) throws SQLException {
+        Connection connection = ConnectToDB();
+        Statement statement = connection.createStatement();
+        return statement.executeQuery(query);
+
     }
 }

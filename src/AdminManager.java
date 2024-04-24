@@ -10,11 +10,7 @@ public class AdminManager {
 
     Scanner scanner = new Scanner(System.in);
 
-    private void makeQuery(String query) throws SQLException {
-        Connection connection = SQL_Connection.ConnectToDB();
-        Statement statement = connection.createStatement();
-        statement.executeUpdate(query);
-    }
+    SQL_Connection sql_connection = new SQL_Connection();
 
     public void addUser() throws SQLException {
         System.out.println("Enter the social security number of the person you want to add: ");
@@ -33,7 +29,7 @@ public class AdminManager {
         System.out.println("Enter the role of the person you want to add: ");
         String role = scanner.nextLine();
         String query = String.format("INSERT INTO users VALUES ('%s', '%s', MD5('%s'), '%s', '%s', %d, '%s')", social_security_number_customer, username, password, name, last_name, age, role);
-        makeQuery(query);
+        sql_connection.makeQuery(query);
         System.out.println("You have added " + name + " with social security number " + social_security_number_customer);
     }
 
@@ -41,7 +37,7 @@ public class AdminManager {
         System.out.println("Enter the social security number of the person you want to remove: ");
         String social_security_number_customer = scanner.nextLine();
         String query = String.format("DELETE FROM users WHERE socialSecNum = '%s'", social_security_number_customer);
-        makeQuery(query);
+        sql_connection.makeQuery(query);
         System.out.println("You have removed the user with social security number " + social_security_number_customer);
     }
 
@@ -62,7 +58,7 @@ public class AdminManager {
         System.out.println("Enter the new role of the person you want to modify: ");
         String role = scanner.nextLine();
         String query = String.format("UPDATE users SET username = '%s', password = MD5('%s'), firstName = '%s', lastName = '%s', age = %d, role = '%s' WHERE socialSecNum = '%s'", username, password, name, last_name, age, role, social_security_number_customer);
-        makeQuery(query);
+        sql_connection.makeQuery(query);
         System.out.println("You have modified the user with social security number " + social_security_number_customer);
     }
 
@@ -74,7 +70,7 @@ public class AdminManager {
         System.out.println("Enter the new owner of the account you want to modify: ");
         String owner = scanner.nextLine();
         String query = String.format("UPDATE account SET balance = %d, person = '%s' WHERE accountNumber = %d", balance, owner, account_number);
-        makeQuery(query);
+        sql_connection.makeQuery(query);
         System.out.println("You have modified the account with account number " + account_number);
     }
 
