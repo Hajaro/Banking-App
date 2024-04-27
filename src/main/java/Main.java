@@ -2,6 +2,8 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
+        final LoanCalculator loanCalculator = new LoanCalculator();
+        Double a = loanCalculator.calculateMonthlyPayment(10000, 1, 5);
         String[] customer = Login.login();
         String social_security_number = customer[0];
         String role = customer[1];
