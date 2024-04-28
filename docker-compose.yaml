@@ -1,0 +1,30 @@
+services:
+  server:
+    build:
+      context: ./DockerFile-Java
+    ports:
+      - 8080:8080
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - POSTGRES_URL=jdbc:mysql://localhost:3306/banking_system?useSSL=false&serverTimezone=UTC
+  db:
+    image: mysql
+    restart: always
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_DATABASE: Banking_system
+      MYSQL_USER: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+volumes:
+  db-data:
