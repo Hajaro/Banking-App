@@ -43,7 +43,7 @@ public class EmployeeManager {
         scanner.nextLine();
         System.out.println("Enter the currency for the account: ");
         String currency = scanner.nextLine();
-        String query = String.format("INSERT INTO account VALUES ('%s', '%s', %d, '%s')", social_security_number_account, account_number, balance, currency);
+        String query = String.format("INSERT INTO account VALUES ('%s', '%s', '%s', %d)", social_security_number_account, account_number, currency, balance);
         sql_connection.makeQuery(query);
         System.out.println("You have added an account with number " + account_number + " to " + social_security_number_account);
     }

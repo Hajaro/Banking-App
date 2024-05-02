@@ -9,7 +9,6 @@ public class Login {
     public static String[] login() throws SQLException {
         Connection connection = SQL_Connection.ConnectToDB();
         Statement statement = connection.createStatement();
-
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your username: ");
         String username = scanner.nextLine();

@@ -1,5 +1,7 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class CustomerManager {
@@ -12,12 +14,20 @@ public class CustomerManager {
     Scanner scanner = new Scanner(System.in);
     SQL_Connection sql_connection = new SQL_Connection();
 
+    private String checkDateTime() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return now.format(formatter);
+    }
     public void deposit() throws SQLException {
         System.out.println("What account number would you like to deposit to?");
         String account_number = scanner.nextLine();
         System.out.println("How much would you like to deposit?");
         Integer deposit_amount = scanner.nextInt();
         String query = String.format("UPDATE account SET balance = balance + %d WHERE person = '%s' AND number = '%s'", deposit_amount, social_security_number, account_number);
+        sql_connection.makeQuery(query);
+        String dateTime = checkDateTime();
+        query = String.format("INSERT INTO transaction_history VALUES (%s, 'deposit', %d, 'outside', 'own')", dateTime, deposit_amount);
         sql_connection.makeQuery(query);
         System.out.println("You have deposited " + deposit_amount);
     }
@@ -40,6 +50,9 @@ public class CustomerManager {
                 return;
             }
             query = String.format("UPDATE account SET balance = balance - %d WHERE person = '%s'", withdraw_amount, social_security_number);
+            sql_connection.makeQuery(query);
+            String dateTime = checkDateTime();
+            query = String.format("INSERT INTO transaction_history VALUES (%s, 'withdrawal', %d, '%s', 'withdrawal')", dateTime, withdraw_amount, account_number);
             sql_connection.makeQuery(query);
             System.out.println("You have withdrawn " + withdraw_amount + "\nYour new balance is " + (balance - withdraw_amount));
         }
