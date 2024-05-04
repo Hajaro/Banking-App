@@ -27,7 +27,7 @@ public class CustomerManager {
         String query = String.format("UPDATE account SET balance = balance + %d WHERE person = '%s' AND number = '%s'", deposit_amount, social_security_number, account_number);
         sql_connection.makeQuery(query);
         String dateTime = checkDateTime();
-        query = String.format("INSERT INTO transaction_history (time_and_date, type, amount, from_account, to_account) VALUES ('%s', 'deposit', %d, 'outside', 'own')", dateTime, deposit_amount);
+        query = String.format("INSERT INTO transaction_history (time_and_date, type, amount, from_account, to_account) VALUES ('%s', 'deposit', %d, 'outside', '%s')", dateTime, deposit_amount, account_number);
         sql_connection.makeQuery(query);
         System.out.println("You have deposited " + deposit_amount);
     }
