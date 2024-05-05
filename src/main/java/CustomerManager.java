@@ -27,8 +27,8 @@ public class CustomerManager {
         String query = String.format("UPDATE account SET balance = balance + %d WHERE person = '%s' AND number = '%s'", deposit_amount, social_security_number, account_number);
         sql_connection.makeQuery(query);
         String dateTime = checkDateTime();
-        query = String.format("INSERT INTO transaction_history (time_and_date, type, amount, from_account, to_account) VALUES ('%s', 'deposit', %d, 'outside', '%s')", dateTime, deposit_amount, account_number);
-        sql_connection.makeQuery(query);
+        String query2 = String.format("INSERT INTO transaction_history (time_and_date, type, amount, from_account, to_account) VALUES ('%s', 'deposit', %d, 'outside', '%s')", dateTime, deposit_amount, account_number);
+        sql_connection.makeQuery(query2);
         System.out.println("You have deposited " + deposit_amount);
     }
 
@@ -49,11 +49,11 @@ public class CustomerManager {
                 System.out.println("You only have " + balance + " in your account\nYou can't withdraw " + withdraw_amount + " from your account");
                 return;
             }
-            query = String.format("UPDATE account SET balance = balance - %d WHERE person = '%s'", withdraw_amount, social_security_number);
-            sql_connection.makeQuery(query);
+            String query2 = String.format("UPDATE account SET balance = balance - %d WHERE person = '%s'", withdraw_amount, social_security_number);
+            sql_connection.makeQuery(query2);
             String dateTime = checkDateTime();
-            query = String.format("INSERT INTO transaction_history (time_and_date, type, amount, from_account, to_account) VALUES ('%s', 'withdrawal', %d, '%s', 'withdrawal')", dateTime, withdraw_amount, account_number);
-            sql_connection.makeQuery(query);
+            String query3 = String.format("INSERT INTO transaction_history (time_and_date, type, amount, from_account, to_account) VALUES ('%s', 'withdrawal', %d, '%s', 'withdrawal')", dateTime, withdraw_amount, account_number);
+            sql_connection.makeQuery(query3);
             System.out.println("You have withdrawn " + withdraw_amount + "\nYour new balance is " + (balance - withdraw_amount));
         }
 
@@ -62,10 +62,10 @@ public class CustomerManager {
 
     public void takeLoan() throws SQLException {
         //TODO: Implement account number
+        LoanManager loanManager = new LoanManager(sql_connection);
         System.out.println("How much would you like to take out?");
         Integer loan_amount = scanner.nextInt();
-        String query = String.format("UPDATE account SET balance = balance + %d WHERE person = '%s'", loan_amount, social_security_number);
-        sql_connection.makeQuery(query);
-        System.out.println("You have taken out a loan of " + loan_amount);
+        scanner.nextLine();
+        loanManager.instantLoan(loan_amount, social_security_number, checkDateTime());
     }
 }
