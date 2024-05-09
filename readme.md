@@ -1,1 +1,5 @@
 Lombok
+
+builder
+singleton
+var
