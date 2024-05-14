@@ -1,5 +1,1 @@
-Lombok
 
-builder
-singleton
-var
