@@ -5,7 +5,7 @@ public class Main {
         final LoanCalculator loanCalculator = new LoanCalculator();
         final LoginFrame guiFrame = new LoginFrame();
         Double a = loanCalculator.calculateMonthlyPayment(10000, 1, 5);
-        String[] customer = Login.login();
+        String[] customer = Login.login(true,"default_username","default_password");
         String social_security_number = customer[0];
         String role = customer[1];
         if (social_security_number.equals("Invalid login credentials")) {
