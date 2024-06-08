@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         final LoanCalculator loanCalculator = new LoanCalculator();
         final LoginFrame guiFrame = new LoginFrame();
-        Double a = loanCalculator.calculateMonthlyPayment(10000, 1, 5);
+//        Double a = loanCalculator.calculateMonthlyPayment(10000, 1, 5);
         String[] customer = Login.login(true,"default_username","default_password");
         String social_security_number = customer[0];
         String role = customer[1];
@@ -22,6 +22,7 @@ public class Main {
                 menu.showMenu(social_security_number);
             }
             case "admin" -> {
+                MainFrame mainFrame = new MainFrame();
                 MenuAdmin menu = new MenuAdmin(social_security_number);
                 menu.showMenu(social_security_number);
             }

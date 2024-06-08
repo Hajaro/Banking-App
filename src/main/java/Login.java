@@ -11,7 +11,7 @@ public class Login {
         Statement statement = connection.createStatement();
         String username = default_username;
         String password = default_password;
-        if(isGui) {
+        if(!isGui) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter your username: ");
             username = scanner.nextLine();

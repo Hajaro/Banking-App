@@ -37,7 +37,7 @@ public class LoginFrame extends JFrame {
                 try {
                     String username= username_field.getText();
                     String password = password_field.getText();
-                    customer = Login.login(false,username,password);
+                    customer = Login.login(true,username,password);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
