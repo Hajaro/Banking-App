@@ -1,6 +1,6 @@
+package frames;
+
 import javax.swing.*;
-import java.awt.*;
-import java.sql.SQLException;
 
 public class MainFrame extends JFrame{
     public MainFrame(){
@@ -10,7 +10,7 @@ public class MainFrame extends JFrame{
         this.setResizable(false);
         this.setVisible(true);
 
-        JLabel login_label = new JLabel("Login");
+        JLabel login_label = new JLabel("controllers.Login");
         login_label.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(login_label);
     }

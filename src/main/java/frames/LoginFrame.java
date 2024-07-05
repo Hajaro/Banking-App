@@ -1,3 +1,9 @@
+package frames;
+
+import menus.MenuCustomer;
+import menus.MenuEmployee;
+import controllers.Login;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,6 +13,7 @@ import java.sql.SQLException;
 public class LoginFrame extends JFrame {
     public LoginFrame() {
         super("Banking System");
+        JFrame loginWindow = this;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600, 300);
         this.setResizable(false);
@@ -45,7 +52,7 @@ public class LoginFrame extends JFrame {
                 String role = customer[1];
 
                 if (social_security_number.equals("Invalid login credentials")) {
-                    JOptionPane.showMessageDialog(LoginFrame.this, "Invalid login credentials", "Login Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(LoginFrame.this, "Invalid login credentials", "controllers.Login Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
@@ -67,15 +74,11 @@ public class LoginFrame extends JFrame {
                         }
                     }
                     case "admin" -> {
-                        MenuAdmin menu = new MenuAdmin(social_security_number);
-                        try {
-                            menu.showMenu(social_security_number);
-                        } catch (SQLException ex) {
-                            throw new RuntimeException(ex);
-                        }
+                        JFrame adminWindow = new AdminFrame(social_security_number);
                     }
                     default -> System.out.println("Invalid role");
                 }
+                loginWindow.dispose();
             }
         });
         login_button_panel.add(loginButton);

@@ -1,5 +1,8 @@
+package managers;
+
 import java.sql.SQLException;
 import java.util.Scanner;
+import sql.SQL_Connection;
 
 public class AdminManager {
 
@@ -10,22 +13,22 @@ public class AdminManager {
 
     SQL_Connection sql_connection = new SQL_Connection();
 
-    public void addUser() throws SQLException {
-        System.out.println("Enter the social security number of the person you want to add: ");
-        String social_security_number_customer = scanner.nextLine();
-        System.out.println("Enter the username of the person you want to add: ");
-        String username = scanner.nextLine();
-        System.out.println("Enter the password of the person you want to add: ");
-        String password = scanner.nextLine();
-        System.out.println("Enter the name of the person you want to add: ");
-        String name = scanner.nextLine();
-        System.out.println("Enter the last name of the person you want to add: ");
-        String last_name = scanner.nextLine();
-        System.out.println("Enter the age of the person you want to add: ");
-        Integer age = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Enter the role of the person you want to add: ");
-        String role = scanner.nextLine();
+    public void addUser(String social_security_number_customer, String username, String password, String name, String last_name, Integer age, String role) throws SQLException {
+//        System.out.println("Enter the social security number of the person you want to add: ");
+//        String social_security_number_customer = scanner.nextLine();
+//        System.out.println("Enter the username of the person you want to add: ");
+//        String username = scanner.nextLine();
+//        System.out.println("Enter the password of the person you want to add: ");
+//        String password = scanner.nextLine();
+//        System.out.println("Enter the name of the person you want to add: ");
+//        String name = scanner.nextLine();
+//        System.out.println("Enter the last name of the person you want to add: ");
+//        String last_name = scanner.nextLine();
+//        System.out.println("Enter the age of the person you want to add: ");
+//        Integer age = scanner.nextInt();
+//        scanner.nextLine();
+//        System.out.println("Enter the role of the person you want to add: ");
+//        String role = scanner.nextLine();
         String query = String.format("INSERT INTO users VALUES ('%s', '%s', MD5('%s'), '%s', '%s', %d, '%s')", social_security_number_customer, username, password, name, last_name, age, role);
         sql_connection.makeQuery(query);
         System.out.println("You have added " + name + " with social security number " + social_security_number_customer);

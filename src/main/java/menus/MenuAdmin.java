@@ -1,3 +1,7 @@
+package menus;
+
+import managers.AdminManager;
+
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -23,7 +27,7 @@ public class MenuAdmin {
             }
             switch (choice) {
                 case 1:
-                    adminManager.addUser();
+//                    adminManager.addUser();
                     break;
                 case 2:
                     adminManager.removeUser();

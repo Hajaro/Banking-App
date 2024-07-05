@@ -1,3 +1,5 @@
+package controllers;
+
 public class LoanCalculator {
     public double calculateMonthlyPayment(double loanAmount, int termInYears, double interestRate) {
         double monthlyInterestRate = interestRate / 100 / 12;

@@ -1,8 +1,11 @@
+package managers;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import sql.SQL_Connection;
 
 public class CustomerManager {
     private final String social_security_number;

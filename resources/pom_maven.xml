@@ -22,7 +22,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>Main</mainClass>
+                            <mainClass>controllers.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -1,7 +1,10 @@
+package managers;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Scanner;
+
+import sql.SQL_Connection;
 
 public class LoanManager {
     private final SQL_Connection sql_connection;

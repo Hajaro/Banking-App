@@ -1,5 +1,9 @@
+package managers;
+
 import java.sql.SQLException;
 import java.util.Scanner;
+
+import sql.SQL_Connection;
 
 public class EmployeeManager {
     public EmployeeManager(String social_security_number) {

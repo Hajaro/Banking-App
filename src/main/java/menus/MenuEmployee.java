@@ -1,3 +1,7 @@
+package menus;
+
+import managers.EmployeeManager;
+
 import java.sql.SQLException;
 import java.util.Scanner;
 
