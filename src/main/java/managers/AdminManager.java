@@ -1,5 +1,6 @@
 package managers;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 import sql.SQL_Connection;
@@ -73,6 +74,11 @@ public class AdminManager {
         String query = String.format("UPDATE account SET balance = %d, person = '%s' WHERE accountNumber = %d", balance, owner, account_number);
         sql_connection.makeQuery(query);
         System.out.println("You have modified the account with account number " + account_number);
+    }
+
+    public ResultSet searchUser(String social_security_number) throws SQLException {
+        String query = String.format("SELECT * FROM users WHERE socialSecNum = '%s'", social_security_number);
+        return sql_connection.makeQuerySelect(query);
     }
 
 }

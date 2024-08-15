@@ -30,5 +30,10 @@ public class AdminFrame extends JFrame{
             JFrame addUserFrame = new AddUserFrame(social_security_number, this);
             this.setVisible(false);
         });
+
+        removeUserButton.addActionListener(e -> {
+            JFrame removeUserFrame = new RemoveUserFrame(social_security_number, this);
+            this.setVisible(false);
+        });
     }
 }

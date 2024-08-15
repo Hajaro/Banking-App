@@ -25,7 +25,7 @@ public class Login {
         String query = String.format("SELECT username, password, socialSecNum, role FROM users WHERE username = '%s' AND password = MD5('%s')", username, password);
         ResultSet resultSet = statement.executeQuery(query);
         if (resultSet.next()) {
-            System.out.println("controllers.Login successful");
+            System.out.println("Login successful");
             String social_security_number = resultSet.getString("socialSecNum");
             String role = resultSet.getString("role");
             switch (role) {
